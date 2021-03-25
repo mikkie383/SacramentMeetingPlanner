@@ -8,23 +8,23 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\cdes5\\.nuget\\packages\\": {},
+    "C:\\Users\\Garrett\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\cdes5\\source\\repos\\SacramentMeetingPlanner\\SacramentMeetingPlanner\\SacramentMeetingPlanner.csproj",
+      "projectUniqueName": "C:\\Users\\Garrett\\Source\\Repos\\SacramentMeetingPlanner\\SacramentMeetingPlanner\\SacramentMeetingPlanner.csproj",
       "projectName": "SacramentMeetingPlanner",
-      "projectPath": "C:\\Users\\cdes5\\source\\repos\\SacramentMeetingPlanner\\SacramentMeetingPlanner\\SacramentMeetingPlanner.csproj",
-      "packagesPath": "C:\\Users\\cdes5\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cdes5\\source\\repos\\SacramentMeetingPlanner\\SacramentMeetingPlanner\\obj\\",
+      "projectPath": "C:\\Users\\Garrett\\Source\\Repos\\SacramentMeetingPlanner\\SacramentMeetingPlanner\\SacramentMeetingPlanner.csproj",
+      "packagesPath": "C:\\Users\\Garrett\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Garrett\\Source\\Repos\\SacramentMeetingPlanner\\SacramentMeetingPlanner\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\cdes5\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Garrett\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],

@@ -15,6 +15,6 @@ namespace SacramentMeetingPlanner.Models
 
         public int Age { get; set; }
 
-        public int  CallingId { get; set; }
+        public int CallingId { get; set; }
     }
 }
