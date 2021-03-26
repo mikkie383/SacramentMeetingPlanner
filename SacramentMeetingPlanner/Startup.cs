@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SacramentMeetingPlanner.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace SacramentMeetingPlanner
 {
@@ -23,6 +25,12 @@ namespace SacramentMeetingPlanner
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Registers SacramentContext as a service
+            services.AddDbContext<SacramentContext>(OptionsBuilderConfigurationExtensions =>
+                  OptionsBuilderConfigurationExtensions.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDatabaseDeveloperPageExceptionFilter();
+
             services.AddControllersWithViews();
         }
 
