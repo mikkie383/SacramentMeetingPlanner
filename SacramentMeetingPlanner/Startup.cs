@@ -26,8 +26,8 @@ namespace SacramentMeetingPlanner
         public void ConfigureServices(IServiceCollection services)
         {
             //Registers SacramentContext as a service
-            services.AddDbContext<SacramentContext>(OptionsBuilderConfigurationExtensions =>
-                  OptionsBuilderConfigurationExtensions.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<SacramentContext>(options =>
+                  options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 

@@ -22,7 +22,6 @@ namespace SacramentMeetingPlanner
                 try
                 {
                     var context = services.GetRequiredService<SacramentContext>();
-                    DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
                 {
@@ -43,7 +42,6 @@ namespace SacramentMeetingPlanner
                 try
                 {
                     var context = services.GetRequiredService<SacramentContext>();
-                    DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
                 {

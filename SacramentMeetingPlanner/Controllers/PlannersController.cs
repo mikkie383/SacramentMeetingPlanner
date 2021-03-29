@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SacramentMeetingPlanner.Data;
 using SacramentMeetingPlanner.Models;
+using SacramentMeetingPlanner.Models.PlannerViewModels;
 
 namespace SacramentMeetingPlanner.Controllers
 {
@@ -46,8 +47,28 @@ namespace SacramentMeetingPlanner.Controllers
         // GET: Planners/Create
         public IActionResult Create()
         {
+            ViewData["MemberId"] = new SelectList(_context.Members, "MemberId", "FullName");
+            ViewData["Bishiopric"] = new SelectList(_context.Members.Where(m => m.MemberId == 1 || m.MemberId == 2 || m.MemberId == 3)
+                                                                , "MemberId", "FullName");
             return View();
         }
+
+        /*private void PopulateAssignedCourseData(Planner planner)
+        {
+            var allMembers = _context.Members;
+            var plannerMember = new HashSet<int>(planner.Planner_Members.Select(m => m.MemberId));
+            var viewModel = new List<AssignedMemberData>();
+            foreach(var member in allMembers)
+            {
+                viewModel.Add(new AssignedMemberData
+                {
+                    MemberId = member.MemberId,
+                    MemberName = member.FullName
+                });
+                    
+            }
+            ViewData["Members"] = viewModel;
+        }*/
 
         // POST: Planners/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -62,6 +83,7 @@ namespace SacramentMeetingPlanner.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["MemberId"] = new SelectList(_context.Members, "MemberId", "FullName", planner.Conducting);
             return View(planner);
         }
 

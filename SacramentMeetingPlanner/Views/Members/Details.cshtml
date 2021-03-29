@@ -1,0 +1,51 @@
+﻿@model SacramentMeetingPlanner.Models.Member
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Member</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MemberFName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MemberFName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MemberLName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MemberLName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Birth)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Birth)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+        <dt class="col-sm-2">
+            Calling
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var calling in Model.Calling_Members)
+            {
+                @calling.Calling.CallingName <br />
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MemberId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
