@@ -10,5 +10,7 @@ namespace SacramentMeetingPlanner.Models.PlannerViewModels
         public int CallingId { get; set; }
 
         public string CallingName { get; set; }
+
+        public bool Assigned { get; set; }
     }
 }

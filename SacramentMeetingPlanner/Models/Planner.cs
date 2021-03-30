@@ -19,14 +19,8 @@ namespace SacramentMeetingPlanner.Models
         public string President { get; set; }
 
         [Required]
-        public string Conducting { get; set; }
-
-        [Required]
         [Display(Name = "Opening Hymn")]
         public string OpeningHymn { get; set; }
-
-        [Required]
-        public string Invocation { get; set; }
 
         [Required]
         [Display(Name = "Sacrament Hymn")]
@@ -36,14 +30,9 @@ namespace SacramentMeetingPlanner.Models
 
         //public string SacramentPassing2 { get; set; }
 
-        public string Speaker { get; set; }
-
         [Required]
         [Display(Name = "Closing Hymn")]
         public string ClosingHymn { get; set; }
-
-        [Required]
-        public string Benediction { get; set; }
 
         public ICollection<Planner_Member> Planner_Members { get; set; }
 

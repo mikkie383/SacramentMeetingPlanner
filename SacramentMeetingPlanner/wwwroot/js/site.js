@@ -29,3 +29,18 @@ function addCalling() {
         count++;
     }*/
 }
+
+function checkLimit() {
+    let check = document.getElementsByName("selectedCallings");
+    let newvar = 0;
+    for (let i = 0; i < check.length; i++) {
+        if (check[i].checked == true) {
+            newvar += 1;
+        }
+    }
+    let limit = 4;
+    if (newvar >= limit) {
+        alert("You can only select a maximum of " + (limit - 1 ) + " callings");
+        return false;
+    }
+}

@@ -47,7 +47,7 @@ namespace SacramentMeetingPlanner.Controllers
         // GET: Planners/Create
         public IActionResult Create()
         {
-            ViewData["MemberId"] = new SelectList(_context.Members, "MemberId", "FullName");
+            ViewData["Member"] = new SelectList(_context.Members, "MemberId", "FullName");
             ViewData["Bishiopric"] = new SelectList(_context.Members.Where(m => m.MemberId == 1 || m.MemberId == 2 || m.MemberId == 3)
                                                                 , "MemberId", "FullName");
             return View();
@@ -75,15 +75,16 @@ namespace SacramentMeetingPlanner.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PlannerId,PlannedDate,President,Conducting,OpeningHymn,Invocation,SacramentHymn,Speaker,ClosingHymn,Benediction")] Planner planner)
+        public async Task<IActionResult> Create([Bind("PlannerId,PlannedDate,President,Conducting,OpeningHymn,Invocation,SacramentHymn,Speaker,ClosingHymn,Benediction")] Planner planner, Member member)
         {
             if (ModelState.IsValid)
             {
+                planner.President = "Michael Tsao";
                 _context.Add(planner);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MemberId"] = new SelectList(_context.Members, "MemberId", "FullName", planner.Conducting);
+            ViewData["MemberId"] = new SelectList(_context.Members, "MemberId", "FullName");
             return View(planner);
         }
 

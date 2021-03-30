@@ -67,11 +67,11 @@ namespace SacramentMeetingPlanner.Controllers
             //ViewData["Calling"] = new SelectList(_context.Callings, "CallingId", "CallingName");
             var member = new Member();
             member.Calling_Members = new List<Calling_Member>();
-            PopulateAssignedCallingDate(member);
+            PopulateAssignedCallingData(member);
             return View();
         }
 
-        private void PopulateAssignedCallingDate(Member member)
+        private void PopulateAssignedCallingData(Member member)
         {
             var allCallings = _context.Callings;
             var memberCallings = new HashSet<int>(member.Calling_Members.Select(c => c.CallingId));
@@ -81,8 +81,9 @@ namespace SacramentMeetingPlanner.Controllers
                 viewModel.Add(new AssignedMemberData
                 {
                     CallingId = calling.CallingId,
-                    CallingName = calling.CallingName
-                });
+                    CallingName = calling.CallingName,
+                    Assigned = memberCallings.Contains(calling.CallingId)
+                }) ;
             }
             ViewData["Callings"] = viewModel;
         }
@@ -109,7 +110,7 @@ namespace SacramentMeetingPlanner.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            PopulateAssignedCallingDate(member);
+            PopulateAssignedCallingData(member);
             return View(member);
         }
 
@@ -130,6 +131,7 @@ namespace SacramentMeetingPlanner.Controllers
             {
                 return NotFound();
             }
+            PopulateAssignedCallingData(member);
             return View(member);
         }
 
@@ -138,34 +140,69 @@ namespace SacramentMeetingPlanner.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MemberId,MemberFName,MemberLName,Birth")] Member member)
+        public async Task<IActionResult> Edit(int? id, string[] selectedCallings)
         {
-            if (id != member.MemberId)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            var memberToUpdate = await _context.Members
+                .Include(m => m.Calling_Members)
+                    .ThenInclude(i => i.Calling)
+                .FirstOrDefaultAsync(s => s.MemberId == id);
+
+            if (await TryUpdateModelAsync<Member>(memberToUpdate, "", 
+                i => i.MemberFName, i => i.MemberLName))
             {
+                UpdateMemberCallings(selectedCallings, memberToUpdate);
                 try
                 {
-                    _context.Update(member);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MemberExists(member.MemberId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    //Log the error (uncomment ex variable name and write a log.)
+                    ModelState.AddModelError("", "Unable to save changes. " +
+                        "Try again, and if the problem persists, " +
+                        "see your system administrator.");
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(member);
+            UpdateMemberCallings(selectedCallings, memberToUpdate);
+            PopulateAssignedCallingData(memberToUpdate);
+            return View(memberToUpdate);
+        }
+
+        private void UpdateMemberCallings(string[] selectedCallings, Member memberToUpdate)
+        {
+            if(selectedCallings == null)
+            {
+                memberToUpdate.Calling_Members = new List<Calling_Member>();
+                return;
+            }
+
+            var selectedCallingsHS = new HashSet<string>(selectedCallings);
+            var memberCallings = new HashSet<int>(memberToUpdate.Calling_Members.Select(c => c.Calling.CallingId));
+
+            foreach(var calling in _context.Callings)
+            {
+                if (selectedCallingsHS.Contains(calling.CallingId.ToString()))
+                {
+                    if (!memberCallings.Contains(calling.CallingId))
+                    {
+                        memberToUpdate.Calling_Members.Add(new Calling_Member { MemberId = memberToUpdate.MemberId, CallingId = calling.CallingId });
+                    }
+                }
+                else
+                {
+                    if (memberCallings.Contains(calling.CallingId))
+                    {
+                        Calling_Member callingToRemove = memberToUpdate.Calling_Members.FirstOrDefault(i => i.CallingId == calling.CallingId);
+                        _context.Remove(callingToRemove);
+                    }
+                }
+            }
         }
 
         // GET: Members/Delete/5
@@ -185,7 +222,7 @@ namespace SacramentMeetingPlanner.Controllers
             {
                 return NotFound();
             }
-            PopulateAssignedCallingDate(member);
+            PopulateAssignedCallingData(member);
             return View(member);
         }
 
