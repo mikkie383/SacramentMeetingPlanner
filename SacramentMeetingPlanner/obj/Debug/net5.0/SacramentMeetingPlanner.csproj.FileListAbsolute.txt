@@ -354,3 +354,16 @@ C:\Users\cdes5\source\repos\SacramentMeetingPlanner\SacramentMeetingPlanner\obj\
 C:\Users\cdes5\source\repos\SacramentMeetingPlanner\SacramentMeetingPlanner\obj\Debug\net5.0\Razor\Views\Callings\Details.cshtml.g.cs
 C:\Users\cdes5\source\repos\SacramentMeetingPlanner\SacramentMeetingPlanner\obj\Debug\net5.0\Razor\Views\Callings\Edit.cshtml.g.cs
 C:\Users\cdes5\source\repos\SacramentMeetingPlanner\SacramentMeetingPlanner\obj\Debug\net5.0\Razor\Views\Callings\Index.cshtml.g.cs
+C:\Users\Garrett\Source\Repos\SacramentMeetingPlanner\SacramentMeetingPlanner\obj\Debug\net5.0\Razor\Views\Callings\Create.cshtml.g.cs
+C:\Users\Garrett\Source\Repos\SacramentMeetingPlanner\SacramentMeetingPlanner\obj\Debug\net5.0\Razor\Views\Callings\Delete.cshtml.g.cs
+C:\Users\Garrett\Source\Repos\SacramentMeetingPlanner\SacramentMeetingPlanner\obj\Debug\net5.0\Razor\Views\Callings\Details.cshtml.g.cs
+C:\Users\Garrett\Source\Repos\SacramentMeetingPlanner\SacramentMeetingPlanner\obj\Debug\net5.0\Razor\Views\Callings\Edit.cshtml.g.cs
+C:\Users\Garrett\Source\Repos\SacramentMeetingPlanner\SacramentMeetingPlanner\obj\Debug\net5.0\Razor\Views\Callings\Index.cshtml.g.cs
+C:\Users\Garrett\Source\Repos\SacramentMeetingPlanner\SacramentMeetingPlanner\obj\Debug\net5.0\Razor\Views\Members\Create.cshtml.g.cs
+C:\Users\Garrett\Source\Repos\SacramentMeetingPlanner\SacramentMeetingPlanner\obj\Debug\net5.0\Razor\Views\Members\Delete.cshtml.g.cs
+C:\Users\Garrett\Source\Repos\SacramentMeetingPlanner\SacramentMeetingPlanner\obj\Debug\net5.0\Razor\Views\Members\Details.cshtml.g.cs
+C:\Users\Garrett\Source\Repos\SacramentMeetingPlanner\SacramentMeetingPlanner\obj\Debug\net5.0\Razor\Views\Members\Edit.cshtml.g.cs
+C:\Users\Garrett\Source\Repos\SacramentMeetingPlanner\SacramentMeetingPlanner\obj\Debug\net5.0\Razor\Views\Members\Index.cshtml.g.cs
+C:\Users\Garrett\source\repos\SacramentMeetingPlanner\SacramentMeetingPlanner\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Garrett\source\repos\SacramentMeetingPlanner\SacramentMeetingPlanner\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Garrett\source\repos\SacramentMeetingPlanner\SacramentMeetingPlanner\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

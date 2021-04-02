@@ -75,11 +75,22 @@ namespace SacramentMeetingPlanner.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PlannerId,PlannedDate,President,Conducting,OpeningHymn,Invocation,SacramentHymn,Speaker,ClosingHymn,Benediction")] Planner planner, Member member)
+        /* public async Task<IActionResult> Create([Bind("PlannerId,PlannedDate,President,Conducting,OpeningHymn,Invocation,SacramentHymn,Speaker,ClosingHymn,Benediction")] Planner planner, Member member)
+           {
+               if (ModelState.IsValid)
+               {
+                   planner.President = "Michael Tsao";
+                   _context.Add(planner);
+                   await _context.SaveChangesAsync();
+                   return RedirectToAction(nameof(Index));
+               }
+               ViewData["MemberId"] = new SelectList(_context.Members, "MemberId", "FullName");
+               return View(planner);
+           } */
+        public async Task<IActionResult> Create([Bind("PlannerId,PlannedDate,Conducting,OpeningHymn,Invocation,SacramentHymn,Speaker,ClosingHymn,Benediction")] Planner planner, Member member)
         {
             if (ModelState.IsValid)
             {
-                planner.President = "Michael Tsao";
                 _context.Add(planner);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
