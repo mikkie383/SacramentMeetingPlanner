@@ -87,8 +87,14 @@ namespace SacramentMeetingPlanner.Controllers
                ViewData["MemberId"] = new SelectList(_context.Members, "MemberId", "FullName");
                return View(planner);
            } */
-        public async Task<IActionResult> Create([Bind("PlannerId,PlannedDate,Conducting,OpeningHymn,Invocation,SacramentHymn,Speaker,ClosingHymn,Benediction")] Planner planner, Member member)
+        public async Task<IActionResult> Create([Bind("PlannerId,PlannedDate,Conducting,OpeningHymn,Invocation,SacramentHymn,Speaker,ClosingHymn,Benediction")] Planner planner, int[] selectedMembers)
         {
+            planner.Planner_Members = new List<Planner_Member>();
+            foreach(var member in selectedMembers)
+            {
+                planner.Planner_Members.Add(new Planner_Member {PlannerId = planner.PlannerId, MemberId = member });
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(planner);
