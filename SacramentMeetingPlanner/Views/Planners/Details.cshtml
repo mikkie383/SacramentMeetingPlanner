@@ -9,70 +9,81 @@
 <div>
     <h4>Planner</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PlannedDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PlannedDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Conducting)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Conducting)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OpeningHymn)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OpeningHymn)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Invocation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Invocation)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SacramentHymn)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SacramentHymn)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Topic)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Topic)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Topic1)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Topic1)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Topic2)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Topic2)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ClosingHymn)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ClosingHymn)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Benediction)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Benediction)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.PlannerId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div class="plannerSheet">
+        <div class="box">
+            <h4>Rexburg YSA Word</h4>
+            <h4>@Html.DisplayFor(model => model.PlannedDate)</h4>
+        </div>
+        <p>
+            <span>
+                @Html.DisplayNameFor(model => model.Conducting)
+            </span>---------------------------------------------------------
+            <span>
+                @Html.DisplayFor(model => model.Conducting)
+            </span>
+        </p>
+        <p>
+            <span>
+                @Html.DisplayNameFor(model => model.OpeningHymn)
+            </span>-------------------
+            <span>
+                @Html.DisplayFor(model => model.OpeningHymn)
+            </span>
+        </p>
+        <p>
+            <span>
+                @Html.DisplayNameFor(model => model.Invocation)
+            </span>---------------------------------------------------------
+            <span>
+                @Html.DisplayFor(model => model.Invocation)
+            </span>
+        </p>
+        <p>
+            <span>
+                @Html.DisplayNameFor(model => model.SacramentHymn)
+            </span>-------------------
+            <span>
+                @Html.DisplayFor(model => model.SacramentHymn)
+            </span>
+        </p>
+        <p>
+            <span>
+                @Html.DisplayNameFor(model => model.Topic)
+            </span>---------------------------------------------------------
+            <span>
+                @Html.DisplayFor(model => model.Topic)
+            </span>
+        </p>
+        <p>
+            <span>
+                Speaker
+            </span>---------------------------------------------------------
+            <span class="m-1">
+                @foreach (var member in Model.Planner_Members)
+                {
+                    @member.Member.MemberFull<br />
+                }
+            </span>
+        </p>
+        <p>
+            <span>
+                @Html.DisplayNameFor(model => model.ClosingHymn)
+            </span>-------------------
+            <span>
+                @Html.DisplayFor(model => model.ClosingHymn)
+            </span>
+        </p>
+        <p>
+            <span>
+                @Html.DisplayNameFor(model => model.Benediction)
+            </span>---------------------------------------------------------
+            <span>
+                @Html.DisplayFor(model => model.Benediction)
+            </span>
+        </p>
+    </div>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.PlannerId" class="btn btn-secondary">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>

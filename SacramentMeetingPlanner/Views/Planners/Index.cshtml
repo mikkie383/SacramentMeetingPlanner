@@ -7,28 +7,22 @@
 <h1>Planner</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.PlannedDate)
+                Date
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Conducting)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OpeningHymn)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SacramentHymn)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Topic)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ClosingHymn)
             </th>
             <th></th>
         </tr>
@@ -43,21 +37,15 @@
                 @Html.DisplayFor(modelItem => item.Conducting)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OpeningHymn)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.SacramentHymn)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Topic)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ClosingHymn)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PlannerId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PlannerId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PlannerId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.PlannerId" class="btn btn-secondary">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PlannerId" class="btn btn-info">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PlannerId" class="btn btn-outline-danger">Delete</a>
             </td>
         </tr>
 }

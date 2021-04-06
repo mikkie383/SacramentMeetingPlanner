@@ -24,10 +24,16 @@
                 </select>
                 <span asp-validation-for="Conducting" class="text-danger"></span>
             </div>
+            <!--<div class="form-group">
+        <label asp-for="OpeningHymn" class="control-label"></label>
+        <input asp-for="OpeningHymn" class="form-control hymnNames" />
+        <span asp-validation-for="OpeningHymn" class="text-danger"></span>
+    </div> -->
             <div class="form-group">
-                <label asp-for="OpeningHymn" class="control-label"></label>
-                <input asp-for="OpeningHymn" class="form-control hymnNames" />
-                <span asp-validation-for="OpeningHymn" class="text-danger"></span>
+                <label class="control-label">Opening Hymn</label>
+                <select asp-for="OpeningHymn" class="form-control hymnNames" required>
+                    <option value="" disabled selected>-- Select a Hymn --</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Invocation" class="control-label"></label>
@@ -36,10 +42,16 @@
                 </select>
                 <span asp-validation-for="Invocation" class="text-danger"></span>
             </div>
+            <!-- <div class="form-group">
+        <label asp-for="SacramentHymn" class="control-label"></label>
+        <input asp-for="SacramentHymn" class="form-control hymnNames" />
+        <span asp-validation-for="SacramentHymn" class="text-danger"></span>
+    </div> -->
             <div class="form-group">
-                <label asp-for="SacramentHymn" class="control-label"></label>
-                <input asp-for="SacramentHymn" class="form-control hymnNames" />
-                <span asp-validation-for="SacramentHymn" class="text-danger"></span>
+                <label class="control-label">Sacrament Hymn</label>
+                <select asp-for="SacramentHymn" class="form-control hymnNames" required>
+                    <option value="" disabled selected>-- Select a Hymn --</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Topic" class="control-label"></label>
@@ -47,7 +59,27 @@
                 <span asp-validation-for="Topic" class="text-danger"></span>
             </div>
             @{ List<SacramentMeetingPlanner.Models.PlannerViewModels.AssignedPlannerData> members = ViewBag.Members;
-                <div class="calling1 form-group">
+                <div class="speaker1 form-group">
+                    <label class="control-label" for="speaker">Speaker</label>
+                    <select class="form-control" id="speaker" name="selectedMembers">
+                        <option value="" disabled selected>-- Select a Member --</option>
+                        @foreach (var member in members)
+                        {
+                            <option value="@member.MemberId">@member.MemberName</option>
+                        }
+                    </select>
+                </div>
+                <div class="speaker2 form-group">
+                    <label class="control-label" for="speaker">Speaker</label>
+                    <select class="form-control" id="speaker" name="selectedMembers">
+                        <option value="" disabled selected>-- Select a Member --</option>
+                        @foreach (var member in members)
+                        {
+                            <option value="@member.MemberId">@member.MemberName</option>
+                        }
+                    </select>
+                </div>
+                <div class="speaker3 form-group">
                     <label class="control-label" for="speaker">Speaker</label>
                     <select class="form-control" id="speaker" name="selectedMembers">
                         <option value="" disabled selected>-- Select a Member --</option>
@@ -58,20 +90,27 @@
                     </select>
                 </div>
             }
+            <button type="button" class="mb-2" onclick="addSpeaker()">Add a speaker</button>
+            <!--<div class="form-group">
+        <label asp-for="Topic1" class="control-label"></label>
+        <input asp-for="Topic1" class="form-control" />
+        <span asp-validation-for="Topic1" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Topic2" class="control-label"></label>
+        <input asp-for="Topic2" class="form-control" />
+        <span asp-validation-for="Topic2" class="text-danger"></span>
+    </div>-->
+            <!--<div class="form-group">
+        <label asp-for="ClosingHymn" class="control-label"></label>
+        <input asp-for="ClosingHymn" class="form-control hymnNames" />
+        <span asp-validation-for="ClosingHymn" class="text-danger"></span>
+    </div>-->
             <div class="form-group">
-                <label asp-for="Topic1" class="control-label"></label>
-                <input asp-for="Topic1" class="form-control" />
-                <span asp-validation-for="Topic1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Topic2" class="control-label"></label>
-                <input asp-for="Topic2" class="form-control" />
-                <span asp-validation-for="Topic2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ClosingHymn" class="control-label"></label>
-                <input asp-for="ClosingHymn" class="form-control hymnNames" />
-                <span asp-validation-for="ClosingHymn" class="text-danger"></span>
+                <label class="control-label">Closing Hymn</label>
+                <select asp-for="ClosingHymn" class="form-control hymnNames" required>
+                    <option value="" disabled selected>-- Select a Hymn --</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Benediction" class="control-label"></label>
@@ -94,6 +133,18 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 <script>
+    document.querySelector(".speaker2").setAttribute("style", "display:none;");
+    document.querySelector(".speaker3").setAttribute("style", "display:none;");
+    var num = 1;
+    
+    function addSpeaker() {
+        num++;
+        if (num >= 4) {
+            alert("Can't add more than 3 speakers");
+        }
+        document.querySelector(".speaker" + num).setAttribute("style", "display:block;");
+        
+    }
     $(function () {
         $.getJSON('/hymns.json', function (hymn) {
             $.each(hymn, function (i, emp) {
@@ -104,5 +155,6 @@
             console.log('error');
         });
     });
+    
 </script>
 }

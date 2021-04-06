@@ -35,6 +35,9 @@ namespace SacramentMeetingPlanner.Controllers
             }
 
             var planner = await _context.Planners
+                .Include(m => m.Planner_Members)
+                    .ThenInclude(m => m.Member)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.PlannerId == id);
             if (planner == null)
             {
@@ -107,11 +110,16 @@ namespace SacramentMeetingPlanner.Controllers
                 return NotFound();
             }
 
-            var planner = await _context.Planners.FindAsync(id);
+            var planner = await _context.Planners
+                                        .Include(m => m.Planner_Members)
+                                            .ThenInclude(m => m.Member)
+                                        .AsNoTracking()
+                                        .FirstOrDefaultAsync(m => m.PlannerId == id );
             if (planner == null)
             {
                 return NotFound();
             }
+            PopulateAssignedMemberData(planner);
             return View(planner);
         }
 
@@ -159,6 +167,9 @@ namespace SacramentMeetingPlanner.Controllers
             }
 
             var planner = await _context.Planners
+                .Include(m => m.Planner_Members)
+                    .ThenInclude(m => m.Member)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.PlannerId == id);
             if (planner == null)
             {
