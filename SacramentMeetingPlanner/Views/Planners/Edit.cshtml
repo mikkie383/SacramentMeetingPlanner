@@ -19,42 +19,49 @@
                 <span asp-validation-for="PlannedDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="President" class="control-label"></label>
-                <input asp-for="President" class="form-control" />
-                <span asp-validation-for="President" class="text-danger"></span>
+                <label asp-for="Conducting" class="control-label"></label>
+                <input asp-for="Conducting" class="form-control" />
+                <span asp-validation-for="Conducting" class="text-danger"></span>
             </div>
-            <!-- <div class="form-group">
-        <label asp-for="OpeningHymn" class="control-label"></label>
-        <input asp-for="OpeningHymn" class="form-control" />
-        <span asp-validation-for="OpeningHymn" class="text-danger"></span>
-    </div> -->
             <div class="form-group">
-                <label class="control-label">Opening Hymn</label>
-                <select class="form-control hymnNames" required>
-                    <option value="" disabled selected>-- Select a Hymn --</option>
-                </select>
+                <label asp-for="OpeningHymn" class="control-label"></label>
+                <input asp-for="OpeningHymn" class="form-control" />
+                <span asp-validation-for="OpeningHymn" class="text-danger"></span>
             </div>
-            <!-- <div class="form-group">
-         <label asp-for="SacramentHymn" class="control-label"></label>
-         <input asp-for="SacramentHymn" class="form-control" />
-         <span asp-validation-for="SacramentHymn" class="text-danger"></span>
-     </div> -->
             <div class="form-group">
-                <label class="control-label">Sacrament Hymn</label>
-                <select class="form-control hymnNames" required>
-                    <option value="" disabled selected>-- Select a Hymn --</option>
-                </select>
+                <label asp-for="Invocation" class="control-label"></label>
+                <input asp-for="Invocation" class="form-control" />
+                <span asp-validation-for="Invocation" class="text-danger"></span>
             </div>
-            <!-- <div class="form-group">
-        <label asp-for="ClosingHymn" class="control-label"></label>
-        <input asp-for="ClosingHymn" class="form-control" />
-        <span asp-validation-for="ClosingHymn" class="text-danger"></span>
-    </div> -->
             <div class="form-group">
-                <label class="control-label">Closing Hymn</label>
-                <select class="form-control hymnNames" required>
-                    <option value="" disabled selected>-- Select a Hymn --</option>
-                </select>
+                <label asp-for="SacramentHymn" class="control-label"></label>
+                <input asp-for="SacramentHymn" class="form-control" />
+                <span asp-validation-for="SacramentHymn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Topic" class="control-label"></label>
+                <input asp-for="Topic" class="form-control" />
+                <span asp-validation-for="Topic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Topic1" class="control-label"></label>
+                <input asp-for="Topic1" class="form-control" />
+                <span asp-validation-for="Topic1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Topic2" class="control-label"></label>
+                <input asp-for="Topic2" class="form-control" />
+                <span asp-validation-for="Topic2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClosingHymn" class="control-label"></label>
+                <input asp-for="ClosingHymn" class="form-control" />
+                <span asp-validation-for="ClosingHymn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Benediction" class="control-label"></label>
+                <input asp-for="Benediction" class="form-control" />
+                <span asp-validation-for="Benediction" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -69,17 +76,4 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script>
-        $(function () {
-            $.getJSON('/hymns.json', function (hymn) {
-                $.each(hymn, function (i, emp) {
-                    $("#hymnNames").append('<li>' + emp.name + '</li>');
-                });
-
-            }).error(function () {
-                console.log('error');
-            });
-        });
-
-    </script>
 }

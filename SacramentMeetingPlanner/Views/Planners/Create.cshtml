@@ -18,66 +18,72 @@
                 <span asp-validation-for="PlannedDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Conducting</label>
-                <select class="form-control" asp-items="ViewBag.Bishiopric" required>
+                <label asp-for="Conducting" class="control-label"></label>
+                <select asp-for="Conducting" class="form-control" asp-items="ViewBag.Bishiopric" required>
                     <option value="" disabled selected>-- Select a Member --</option>
                 </select>
-            </div>
-            <!-- <div class="form-group">
-        <label asp-for="OpeningHymn" class="control-label"></label>
-        <input asp-for="OpeningHymn" class="form-control" />
-        <span asp-validation-for="OpeningHymn" class="text-danger"></span>
-    </div> -->
-            <div class="form-group">
-                <label class="control-label">Opening Hymn</label>
-                <select class="form-control hymnNames" required>
-                    <option value="" disabled selected>-- Select a Hymn --</option>
-                </select>
+                <span asp-validation-for="Conducting" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Invocation</label>
-                <select class="form-control" asp-items="ViewBag.Member" required>
+                <label asp-for="OpeningHymn" class="control-label"></label>
+                <input asp-for="OpeningHymn" class="form-control" />
+                <span asp-validation-for="OpeningHymn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invocation" class="control-label"></label>
+                <select asp-for="Invocation" class="form-control" asp-items="ViewBag.Member" required>
                     <option value="" disabled selected>-- Select a Member --</option>
                 </select>
+                <span asp-validation-for="Invocation" class="text-danger"></span>
             </div>
-       <!-- <div class="form-group">
+            <div class="form-group">
                 <label asp-for="SacramentHymn" class="control-label"></label>
                 <input asp-for="SacramentHymn" class="form-control" />
                 <span asp-validation-for="SacramentHymn" class="text-danger"></span>
-            </div> -->
-            <div class="form-group">
-                <label class="control-label">Sacrament Hymn</label>
-                <select class="form-control hymnNames" required>
-                    <option value="" disabled selected>-- Select a Hymn --</option>
-                </select>
             </div>
             <div class="form-group">
-                <label class="control-label">Speaker</label>
-                <select class="form-control" asp-items="ViewBag.Member" required>
-                    <option value="" disabled selected>-- Select a Member --</option>
-                </select>
+                <label asp-for="Topic" class="control-label"></label>
+                <input asp-for="Topic" class="form-control" />
+                <span asp-validation-for="Topic" class="text-danger"></span>
             </div>
-            <!-- <div class="form-group">
-        <label asp-for="ClosingHymn" class="control-label"></label>
-        <input asp-for="ClosingHymn" class="form-control" />
-        <span asp-validation-for="ClosingHymn" class="text-danger"></span>
-    </div> -->
-            <div class="form-group">
-                <label class="control-label">Closing Hymn</label>
-                <select class="form-control hymnNames" required>
-                    <option value="" disabled selected>-- Select a Hymn --</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Benediction</label>
-                <select class="form-control" asp-items="ViewBag.Member" required>
-                    <option value="" disabled selected>-- Select a Member --</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+            @{ List<SacramentMeetingPlanner.Models.PlannerViewModels.AssignedPlannerData> members = ViewBag.Members;
+                <div class="calling1 form-group">
+                    <label class="control-label" for="speaker">Speaker</label>
+                    <select class="form-control" id="speaker" name="selectedMembers">
+                        <option value="" disabled selected>-- Select a Member --</option>
+                        @foreach (var member in members)
+                        {
+                            <option value="@member.MemberId">@member.MemberName</option>
+                        }
+                    </select>
+                </div>
+                }
+                <div class="form-group">
+                    <label asp-for="Topic1" class="control-label"></label>
+                    <input asp-for="Topic1" class="form-control" />
+                    <span asp-validation-for="Topic1" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Topic2" class="control-label"></label>
+                    <input asp-for="Topic2" class="form-control" />
+                    <span asp-validation-for="Topic2" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ClosingHymn" class="control-label"></label>
+                    <input asp-for="ClosingHymn" class="form-control" />
+                    <span asp-validation-for="ClosingHymn" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Benediction" class="control-label"></label>
+                    <select asp-for="Benediction" class="form-control" asp-items="ViewBag.Member" required>
+                        <option value="" disabled selected>-- Select a Member --</option>
+                    </select>
+                    <span asp-validation-for="Benediction" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
     </div>
 </div>
 
@@ -87,17 +93,4 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-<script>
-    $(function () {
-        $.getJSON('/hymns.json', function (hymn) {
-            $.each(hymn, function (i, emp) {
-                $(".hymnNames").append('<option>' + emp.songNumber + ' ' + emp.name + '</option>');
-            });
-
-        }).error(function () {
-            console.log('error');
-        });
-    });
-
-</script>
 }

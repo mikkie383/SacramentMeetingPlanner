@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,23 +17,32 @@ namespace SacramentMeetingPlanner.Models
         [Display(Name = "Planned Date")]
         public DateTime PlannedDate { get; set; }
 
-        public string President { get; set; }
+        [Required]
+        public int Conducting { get; set; }
 
         [Required]
         [Display(Name = "Opening Hymn")]
         public string OpeningHymn { get; set; }
 
         [Required]
+        public int Invocation { get; set; }
+
+        [Required]
         [Display(Name = "Sacrament Hymn")]
         public string SacramentHymn { get; set; }
 
-        //public string SacramentPassing1 { get; set; }
+        public string Topic { get; set; }
 
-        //public string SacramentPassing2 { get; set; }
+        public string Topic1 { get; set; }
+
+        public string Topic2 { get; set; }
 
         [Required]
         [Display(Name = "Closing Hymn")]
         public string ClosingHymn { get; set; }
+
+        [Required]
+        public int Benediction { get; set; }
 
         public ICollection<Planner_Member> Planner_Members { get; set; }
 

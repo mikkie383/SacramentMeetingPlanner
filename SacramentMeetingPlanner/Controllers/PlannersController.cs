@@ -47,61 +47,55 @@ namespace SacramentMeetingPlanner.Controllers
         // GET: Planners/Create
         public IActionResult Create()
         {
-            ViewData["Member"] = new SelectList(_context.Members, "MemberId", "FullName");
+            ViewData["Member"] = new SelectList(_context.Members, "MemberFName" , "FullName");
             ViewData["Bishiopric"] = new SelectList(_context.Members.Where(m => m.MemberId == 1 || m.MemberId == 2 || m.MemberId == 3)
                                                                 , "MemberId", "FullName");
+            var planner = new Planner();
+            planner.Planner_Members = new List<Planner_Member>();
+            PopulateAssignedMemberData(planner);
             return View();
         }
 
-        /*private void PopulateAssignedCourseData(Planner planner)
+        private void PopulateAssignedMemberData(Planner planner)
         {
             var allMembers = _context.Members;
             var plannerMember = new HashSet<int>(planner.Planner_Members.Select(m => m.MemberId));
-            var viewModel = new List<AssignedMemberData>();
-            foreach(var member in allMembers)
+            var viewModel = new List<AssignedPlannerData>();
+            foreach (var member in allMembers)
             {
-                viewModel.Add(new AssignedMemberData
+                viewModel.Add(new AssignedPlannerData
                 {
                     MemberId = member.MemberId,
                     MemberName = member.FullName
                 });
-                    
+
             }
             ViewData["Members"] = viewModel;
-        }*/
+        }
 
         // POST: Planners/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        /* public async Task<IActionResult> Create([Bind("PlannerId,PlannedDate,President,Conducting,OpeningHymn,Invocation,SacramentHymn,Speaker,ClosingHymn,Benediction")] Planner planner, Member member)
-           {
-               if (ModelState.IsValid)
-               {
-                   planner.President = "Michael Tsao";
-                   _context.Add(planner);
-                   await _context.SaveChangesAsync();
-                   return RedirectToAction(nameof(Index));
-               }
-               ViewData["MemberId"] = new SelectList(_context.Members, "MemberId", "FullName");
-               return View(planner);
-           } */
-        public async Task<IActionResult> Create([Bind("PlannerId,PlannedDate,Conducting,OpeningHymn,Invocation,SacramentHymn,Speaker,ClosingHymn,Benediction")] Planner planner, int[] selectedMembers)
+        public async Task<IActionResult> Create([Bind("PlannerId,PlannedDate,Conducting,OpeningHymn,Invocation,SacramentHymn,Topic,Topic1,Topic2,ClosingHymn,Benediction")] Planner planner, int[] selectedMembers)
         {
-            planner.Planner_Members = new List<Planner_Member>();
-            foreach(var member in selectedMembers)
+            if(selectedMembers.Length > 0)
             {
-                planner.Planner_Members.Add(new Planner_Member {PlannerId = planner.PlannerId, MemberId = member });
+                planner.Planner_Members = new List<Planner_Member>();
+                foreach(var member in selectedMembers)
+                {
+                    var memberToAdd = new Planner_Member { PlannerId = planner.PlannerId, MemberId = member };
+                    planner.Planner_Members.Add(memberToAdd);
+                }
             }
-
             if (ModelState.IsValid)
             {
                 _context.Add(planner);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MemberId"] = new SelectList(_context.Members, "MemberId", "FullName");
+            PopulateAssignedMemberData(planner);
             return View(planner);
         }
 
@@ -126,7 +120,7 @@ namespace SacramentMeetingPlanner.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PlannerId,PlannedDate,President,Conducting,OpeningHymn,Invocation,SacramentHymn,Speaker,ClosingHymn,Benediction")] Planner planner)
+        public async Task<IActionResult> Edit(int id, [Bind("PlannerId,PlannedDate,Conducting,OpeningHymn,Invocation,SacramentHymn,Topic,Topic1,Topic2,ClosingHymn,Benediction")] Planner planner)
         {
             if (id != planner.PlannerId)
             {

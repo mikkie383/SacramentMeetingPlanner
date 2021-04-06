@@ -48,5 +48,6 @@ namespace SacramentMeetingPlanner.Models
         public ICollection<Planner_Member> Planner_Members { get; set; }
 
         public ICollection<Calling_Member> Calling_Members { get; set; }
+
     }
 }

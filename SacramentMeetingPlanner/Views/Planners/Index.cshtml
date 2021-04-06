@@ -4,10 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Planner</h1>
+<h1>Index</h1>
 
 <p>
-    <a class="btn btn-primary" asp-action="Create">Create New</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -16,36 +16,62 @@
                 @Html.DisplayNameFor(model => model.PlannedDate)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Conducting)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.OpeningHymn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invocation)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SacramentHymn)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Topic)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.ClosingHymn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Benediction)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
+    
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.PlannedDate)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Conducting)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.OpeningHymn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Invocation)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SacramentHymn)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Topic)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.ClosingHymn)
             </td>
             <td>
-                <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.PlannerId">Edit</a> |
-                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.PlannerId">Details</a> |
-                <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.PlannerId">Delete</a>
+                @Html.DisplayFor(modelItem => item.Benediction)
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PlannerId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PlannerId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PlannerId">Delete</a>
             </td>
         </tr>
 }
