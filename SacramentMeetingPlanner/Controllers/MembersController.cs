@@ -93,7 +93,7 @@ namespace SacramentMeetingPlanner.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MemberId,MemberFName,MemberLName,Birth")] Member member, int[] selectedCallings)
+        public async Task<IActionResult> Create([Bind("MemberId,MemberFull,Birth")] Member member, int[] selectedCallings)
         {
             if (selectedCallings.Length > 0)
             {
@@ -153,7 +153,7 @@ namespace SacramentMeetingPlanner.Controllers
                 .FirstOrDefaultAsync(s => s.MemberId == id);
 
             if (await TryUpdateModelAsync<Member>(memberToUpdate, "", 
-                i => i.MemberFName, i => i.MemberLName))
+                i => i.MemberFull))
             {
                 UpdateMemberCallings(selectedCallings, memberToUpdate);
                 try

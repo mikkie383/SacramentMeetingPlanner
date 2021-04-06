@@ -18,14 +18,14 @@ namespace SacramentMeetingPlanner.Models
         public DateTime PlannedDate { get; set; }
 
         [Required]
-        public int Conducting { get; set; }
+        public string Conducting { get; set; }
 
         [Required]
         [Display(Name = "Opening Hymn")]
         public string OpeningHymn { get; set; }
 
         [Required]
-        public int Invocation { get; set; }
+        public string Invocation { get; set; }
 
         [Required]
         [Display(Name = "Sacrament Hymn")]
@@ -42,7 +42,7 @@ namespace SacramentMeetingPlanner.Models
         public string ClosingHymn { get; set; }
 
         [Required]
-        public int Benediction { get; set; }
+        public string Benediction { get; set; }
 
         public ICollection<Planner_Member> Planner_Members { get; set; }
 

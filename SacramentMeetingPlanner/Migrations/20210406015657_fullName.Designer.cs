@@ -10,8 +10,8 @@ using SacramentMeetingPlanner.Data;
 namespace SacramentMeetingPlanner.Migrations
 {
     [DbContext(typeof(SacramentContext))]
-    [Migration("20210331001529_workplz")]
-    partial class workplz
+    [Migration("20210406015657_fullName")]
+    partial class fullName
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,16 +69,11 @@ namespace SacramentMeetingPlanner.Migrations
                     b.Property<DateTime>("Birth")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("MemberFName")
+                    b.Property<string>("MemberFull")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
-                        .HasColumnName("FirstName");
-
-                    b.Property<string>("MemberLName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnName("MemberFull");
 
                     b.HasKey("MemberId");
 
@@ -92,7 +87,19 @@ namespace SacramentMeetingPlanner.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Benediction")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ClosingHymn")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Conducting")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Invocation")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -103,11 +110,17 @@ namespace SacramentMeetingPlanner.Migrations
                     b.Property<DateTime>("PlannedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("President")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("SacramentHymn")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Topic")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Topic1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Topic2")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PlannerId");

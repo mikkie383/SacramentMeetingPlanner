@@ -67,16 +67,11 @@ namespace SacramentMeetingPlanner.Migrations
                     b.Property<DateTime>("Birth")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("MemberFName")
+                    b.Property<string>("MemberFull")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
-                        .HasColumnName("FirstName");
-
-                    b.Property<string>("MemberLName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnName("MemberFull");
 
                     b.HasKey("MemberId");
 
@@ -90,18 +85,21 @@ namespace SacramentMeetingPlanner.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Benediction")
-                        .HasColumnType("int");
+                    b.Property<string>("Benediction")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ClosingHymn")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Conducting")
-                        .HasColumnType("int");
+                    b.Property<string>("Conducting")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Invocation")
-                        .HasColumnType("int");
+                    b.Property<string>("Invocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OpeningHymn")
                         .IsRequired()

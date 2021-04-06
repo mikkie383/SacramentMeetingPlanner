@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SacramentMeetingPlanner.Migrations
 {
-    public partial class Init : Migration
+    public partial class fullName : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,8 +26,7 @@ namespace SacramentMeetingPlanner.Migrations
                 {
                     MemberId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    MemberLName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    MemberFull = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Birth = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -42,12 +41,13 @@ namespace SacramentMeetingPlanner.Migrations
                     PlannerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PlannedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    President = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Conducting = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OpeningHymn = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Invocation = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SacramentHymn = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Speaker = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Topic = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Topic1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Topic2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClosingHymn = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Benediction = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },

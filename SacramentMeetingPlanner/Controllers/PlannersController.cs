@@ -47,9 +47,9 @@ namespace SacramentMeetingPlanner.Controllers
         // GET: Planners/Create
         public IActionResult Create()
         {
-            ViewData["Member"] = new SelectList(_context.Members, "MemberFName" , "FullName");
+            ViewData["Member"] = new SelectList(_context.Members, "MemberFull", "MemberFull");
             ViewData["Bishiopric"] = new SelectList(_context.Members.Where(m => m.MemberId == 1 || m.MemberId == 2 || m.MemberId == 3)
-                                                                , "MemberId", "FullName");
+                                                                , "MemberFull", "MemberFull");
             var planner = new Planner();
             planner.Planner_Members = new List<Planner_Member>();
             PopulateAssignedMemberData(planner);
@@ -66,7 +66,7 @@ namespace SacramentMeetingPlanner.Controllers
                 viewModel.Add(new AssignedPlannerData
                 {
                     MemberId = member.MemberId,
-                    MemberName = member.FullName
+                    MemberName = member.MemberFull
                 });
 
             }
@@ -80,10 +80,10 @@ namespace SacramentMeetingPlanner.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PlannerId,PlannedDate,Conducting,OpeningHymn,Invocation,SacramentHymn,Topic,Topic1,Topic2,ClosingHymn,Benediction")] Planner planner, int[] selectedMembers)
         {
-            if(selectedMembers.Length > 0)
+            if (selectedMembers.Length > 0)
             {
                 planner.Planner_Members = new List<Planner_Member>();
-                foreach(var member in selectedMembers)
+                foreach (var member in selectedMembers)
                 {
                     var memberToAdd = new Planner_Member { PlannerId = planner.PlannerId, MemberId = member };
                     planner.Planner_Members.Add(memberToAdd);

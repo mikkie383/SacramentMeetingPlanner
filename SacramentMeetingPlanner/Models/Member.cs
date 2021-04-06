@@ -12,6 +12,12 @@ namespace SacramentMeetingPlanner.Models
         public int MemberId { get; set; }
 
         [Required]
+        [StringLength(50, ErrorMessage = "Full name cannot be longer than 50 characters.")]
+        [Column("MemberFull")]
+        [Display(Name = "Full Name")]
+        public string MemberFull { get; set; }
+
+        /*[Required]
         [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
         [Column("FirstName")]
         [Display(Name = "First Name")]
@@ -20,7 +26,7 @@ namespace SacramentMeetingPlanner.Models
         [Required]
         [StringLength(50)]
         [Display(Name = "Last Name")]
-        public string MemberLName { get; set; }
+        public string MemberLName { get; set; }*/
 
         [Required]
         [DataType(DataType.Date)]
@@ -36,14 +42,14 @@ namespace SacramentMeetingPlanner.Models
             } 
         }
 
-        [Display(Name = "Full Name")]
+        /*[Display(Name = "Full Name")]
         public string FullName
         {
             get
             {
                 return MemberLName + ", " + MemberFName;
             }
-        }
+        }*/
 
         public ICollection<Planner_Member> Planner_Members { get; set; }
 

@@ -13,10 +13,7 @@
     <thead>
         <tr>
             <th>
-                First Name
-            </th>
-            <th>
-                Last Name
+                Full Name
             </th>
             <th>
                 Date of Birth
@@ -40,10 +37,7 @@
     }
         <tr class="@selectedRow">
             <td>
-                @Html.DisplayFor(modelItem => item.MemberFName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MemberLName)
+                @Html.DisplayFor(modelItem => item.MemberFull)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Birth)
